@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { Link } from "expo-router";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
 const MovieCard = ({
   id,
@@ -10,7 +11,7 @@ const MovieCard = ({
   release_date,
 }: Movie) => {
   return (
-    <Link href={`/movie/${id}`} asChild style={styles.card}>
+    <Link href={`/movies/${id}`} asChild style={styles.card}>
       <TouchableOpacity>
         <Image
           style={styles.poster}
@@ -22,6 +23,9 @@ const MovieCard = ({
           resizeMode="cover"
         />
         <Text style={styles.p1}>{title}</Text>
+        <View>
+          <Icon name="star" color="gold" size={18} />
+        </View>
       </TouchableOpacity>
     </Link>
   );
