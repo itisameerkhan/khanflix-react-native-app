@@ -35,6 +35,8 @@ export default function Index() {
       <SearchBar
         onPress={() => router.push("/search")}
         placeholder="Search for a Movie"
+        value=""
+        onChangeText={() => null}
       />
       <Text style={styles.p1}>Latest Movies</Text>
     </View>
@@ -50,7 +52,7 @@ export default function Index() {
   return (
     <View style={styles.home}>
       <FlatList
-      style={styles.flatlist}
+        style={styles.flatlist}
         data={movies}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <MovieCard {...item} />}
@@ -64,6 +66,11 @@ export default function Index() {
         }}
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
+        ListEmptyComponent={!moviesLoading && !moviesError ? (
+          <View>
+            <Text>No Search result found.</Text>
+          </View>
+        ) : null}
       />
     </View>
   );
@@ -71,7 +78,7 @@ export default function Index() {
 
 const styles = StyleSheet.create({
   flatlist: {
-    padding:10
+    padding: 10,
   },
   header: {
     paddingTop: 70,

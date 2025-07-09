@@ -4,9 +4,12 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 
 interface Props {
   placeholder: string;
+  value: string;
+  onChangeText: (text: string) => void;
   onPress?: () => void;
 }
-const SearchBar = ({ placeholder, onPress }: Props) => {
+
+const SearchBar = ({ value, placeholder, onPress, onChangeText }: Props) => {
   return (
     <View style={styles.view}>
       <Icon name="search" size={24} color="white" />
@@ -14,7 +17,8 @@ const SearchBar = ({ placeholder, onPress }: Props) => {
         placeholder={placeholder}
         placeholderTextColor="white"
         style={styles.TextInput}
-        onChangeText={() => {}}
+        value={value}
+        onChangeText={onChangeText}
         onPress={onPress}
       />
     </View>
