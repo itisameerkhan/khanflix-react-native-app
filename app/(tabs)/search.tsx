@@ -15,6 +15,7 @@ import { fetchMovies } from "@/services/api";
 import useFetch from "@/services/useFetch";
 import MovieCard from "../components/MovieCard";
 import SearchBar from "../components/SearchBar";
+import { updateSearchCount } from "@/services/appwrite";
 
 const search = () => {
   const router = useRouter();
@@ -51,6 +52,10 @@ const search = () => {
   );
 
   useEffect(() => {
+    if (searchQuery.trim()) {
+      updateSearchCount(searchQuery, movies);
+    }
+
     const timeoutId = setTimeout(async () => {
       if (searchQuery.trim()) {
         await loadMovies();
